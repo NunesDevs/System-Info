@@ -1,4 +1,4 @@
-# Monitor do Sistema
+# System-Info
 
 Este projeto é uma ferramenta simples para monitoramento do uso de CPU, memória e rede do sistema em tempo real, com uma interface web.
 
@@ -8,7 +8,7 @@ Este projeto é uma ferramenta simples para monitoramento do uso de CPU, memóri
 
 ## 📂 Estrutura do Projeto
 ```
-📁 monitor_sistema
+📁 System-Info
 │── 📁 static
 │   │── 📄 styles.css
 │   │── 📄 script.js
