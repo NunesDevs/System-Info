@@ -6,3 +6,19 @@ venv/
 .env
 .DS_Store
 *.log
+
+# Jarvis safety
+.env.local
+.env.*.local
+node_modules/
+.next/
+dist/
+build/
+coverage/
+.vscode/
+.idea/
+.venv/
+uploads/
+tmp/
+temp/
+cache/
