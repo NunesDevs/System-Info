@@ -1,44 +1,44 @@
 # System-Info
 
-Este projeto é uma ferramenta simples para monitoramento do uso de CPU, memória e rede do sistema em tempo real, com uma interface web.
+Painel web de CPU, memória e pacotes de rede do computador que executa o servidor Flask.
 
-## 📌 Tecnologias Utilizadas
-- Python (Flask, psutil)
-- HTML, CSS, JavaScript
+## Funcionalidades verificadas
 
-## 📂 Estrutura do Projeto
-```
-📁 System-Info
-│── 📁 static
-│   │── 📄 styles.css
-│   │── 📄 script.js
-│── 📁 templates
-│   │── 📄 index.html
-│── 📄 app.py
-│── 📄 monitor.py
-│── 📄 requirements.txt
-│── 📄 .gitignore
-│── 📄 README.md
-```
+- Percentual de CPU.
+- Uso percentual de memória.
+- Pacotes de rede enviados e recebidos.
+- Atualização dos indicadores via API /stats.
 
-## 🚀 Como Executar
-### 1️⃣ Instalar dependências
-```bash
-pip install -r requirements.txt
+## Operação e arquitetura verificadas
+
+monitor.py consulta psutil e app.py publica /stats e template HTML. As métricas correspondem ao servidor, não ao computador do visitante.
+
+Arquivos principais: `app.py`, `monitor.py`, `static/script.js`.
+
+### Requisitos e execução
+
+Python 3, Flask e psutil.
+
+```text
+python -m venv .venv
+.venv\Scripts\python -m pip install -r requirements.txt
+.venv\Scripts\python app.py
 ```
 
-### 2️⃣ Iniciar o servidor
-```bash
-python app.py
-```
 
-### 3️⃣ Acessar no navegador
-```
-http://127.0.0.1:5000
-```
 
-## 🛠️ Personalização
-Você pode modificar os arquivos `styles.css` para mudar o layout e `script.js` para ajustar a atualização dos dados.
+### Testes e estado
 
-## 📜 Licença
-Este projeto é de código aberto. Use e modifique conforme necessário! 🎉
+Não foi identificada uma suíte automatizada específica para os fluxos descritos; valide a execução e os casos de borda antes de publicar.
+
+Estado: projeto de estudo/experimental. Deploy ativo não foi confirmado nesta revisão.
+
+### Limitações conhecidas
+
+- Não há autenticação para métricas.
+- A chamada psutil.cpu_percent(interval=1) bloqueia a requisição por um segundo.
+- Servidor debug é apenas para desenvolvimento.
+
+### Licença e manutenção
+
+Nenhum arquivo de licença foi identificado nesta revisão; não foi adicionada uma nova licença. Atualize comandos e limitações quando houver mudança de comportamento.
