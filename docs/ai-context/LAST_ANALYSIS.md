@@ -1,3 +1,7 @@
+# Revisão validada — 2026-11-08
+
+Consulte QUALITY_REFRESH.md para código, dependências e testes desta rodada. A análise abaixo foi preservada como histórico de2026-11-01.
+
 # Última análise automática
 
 <!-- AUTO-GENERATED:START -->

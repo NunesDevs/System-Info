@@ -1,19 +1,77 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monitor do Sistema</title>
-    <link rel="stylesheet" href="/static/styles.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+<script type="module" src="{{ url_for('static', filename='script.js') }}">
+</script>
+<title>Monitor do sistema</title>
 </head>
-<body>
-    <h1>Monitor do Sistema</h1>
-    <div id="stats">
-        <p>CPU: <span id="cpu">--</span>%</p>
-        <p>Memória: <span id="mem">--</span>%</p>
-        <p>Pacotes Enviados: <span id="sent">--</span></p>
-        <p>Pacotes Recebidos: <span id="recv">--</span></p>
-    </div>
-    <script src="/static/script.js"></script>
+<body data-stats-url="{{ url_for('stats') }}">
+<main class="container">
+<header>
+<p class="eyebrow">Ferramentas</p>
+<h1>Monitor do sistema</h1>
+<p class="description">Métricas do computador que executa o servidor.</p>
+</header>
+<section class="toolbar" aria-label="Controles de atualização">
+<p id="connection" class="status" data-state="loading" role="status">Coletando métricas…</p>
+<label class="interval" for="interval">
+<span>Intervalo de atualização</span>
+<select id="interval">
+<option value="1000">1 segundo</option>
+<option value="2000">2 segundos</option>
+<option value="5000">5 segundos</option>
+</select>
+</label>
+<div class="actions">
+<button id="pause" type="button" aria-pressed="false">Pausar</button>
+<button id="refresh" type="button">Atualizar agora</button>
+</div>
+</section>
+<section id="error" class="error" aria-live="polite" hidden>
+<h2>Não foi possível atualizar.</h2>
+<p>A última amostra continua visível. Tente atualizar novamente.</p>
+</section>
+<section id="stats" class="metrics" aria-label="Métricas do sistema">
+<article class="metric">
+<h2>CPU</h2>
+<output id="cpu" class="metric-value">—</output>
+<div class="gauge" aria-hidden="false">
+<meter id="cpu_gauge" min="0" max="100" value="0" aria-label="CPU" hidden>
+</meter>
+</div>
+<p class="metric-caption">Uso do processador</p>
+</article>
+<article class="metric">
+<h2>Memória</h2>
+<output id="mem" class="metric-value">—</output>
+<div class="gauge" aria-hidden="false">
+<meter id="mem_gauge" min="0" max="100" value="0" aria-label="Memória" hidden>
+</meter>
+</div>
+<p class="metric-caption">Memória utilizada</p>
+</article>
+<article class="metric">
+<h2>Pacotes enviados</h2>
+<output id="sent" class="metric-value">—</output>
+<div class="gauge placeholder" aria-hidden="true">
+</div>
+<p class="metric-caption">Contador acumulado</p>
+</article>
+<article class="metric">
+<h2>Pacotes recebidos</h2>
+<output id="recv" class="metric-value">—</output>
+<div class="gauge placeholder" aria-hidden="true">
+</div>
+<p class="metric-caption">Contador acumulado</p>
+</article>
+</section>
+<p id="updated" class="small">Aguardando a primeira amostra.</p>
+<p class="small">Pacotes são contadores acumulados, não velocidade de rede.</p>
+</main>
 </body>
 </html>
